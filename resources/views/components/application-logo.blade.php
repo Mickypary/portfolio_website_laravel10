@@ -1,0 +1,1 @@
+<img src="{{ asset('logo/mes2.png') }}" width="100px">
