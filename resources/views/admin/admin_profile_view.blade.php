@@ -4,8 +4,6 @@
 
 
 
-  <main id="main" class="main">
-
     <div class="pagetitle">
       <h1>Profile</h1>
       <nav>
@@ -314,8 +312,6 @@
         </div>
       </div>
     </section>
-
-  </main><!-- End #main -->
 
 
 

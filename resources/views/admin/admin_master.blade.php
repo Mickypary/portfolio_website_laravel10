@@ -26,6 +26,10 @@
   <link href="{{ asset('backend/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ asset('backend/assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
+  <!-- Sweet Alert 2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Jquery Ajax -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <!-- // toastr -->
@@ -49,7 +53,9 @@
 
   @include('admin.body.sidebar')
 
+  <main id="main" class="main">
   @yield('admin')
+  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   @include('admin.body.footer')
@@ -67,6 +73,8 @@
   <script src="{{ asset('backend/assets/vendor/php-email-form/validate.js') }}"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script type="text/javascript" src="{{ asset('backend/assets/js/code.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('backend/assets/js/main.js') }}"></script>
