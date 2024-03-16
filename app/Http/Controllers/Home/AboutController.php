@@ -14,6 +14,8 @@ use App\Models\About;
 use App\Models\MultiImage;
 use App\Models\AboutEducation;
 use App\Models\AboutAward;
+use App\Models\HomeService;
+use App\Models\ClientFeedback;
 
 class AboutController extends Controller
 {
@@ -68,7 +70,9 @@ class AboutController extends Controller
         $multi_image = MultiImage::all();
         $education = AboutEducation::all();
         $award = AboutAward::all();
-        return view('frontend.about_single_page', compact('about','multi_image','education','award'));
+        $service = HomeService::all();
+        $feedback = ClientFeedback::all();
+        return view('frontend.about_single_page', compact('about','multi_image','education','award','service','feedback'));
     }
 
 
@@ -284,7 +288,7 @@ class AboutController extends Controller
     public function AboutAward()
     {
         $aboutaward = AboutAward::all();
-        return view('admin.about..award.about_award_view', compact('aboutaward'));
+        return view('admin.about.award.about_award_view', compact('aboutaward'));
     }
 
     public function AddAward()

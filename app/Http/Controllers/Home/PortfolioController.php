@@ -36,23 +36,77 @@ class PortfolioController extends Controller
             'portfolio_title.required' => 'The portfolio title field is required',
         ]);
 
+        $portfolio = new Portfolio();
+        
         if ($request->file('portfolio_image')) {
-            $portfolio_image = $request->file('portfolio_image');
-            $filename = hexdec(uniqid()).'.'.$portfolio_image->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read($portfolio_image);
-            $image->resize(1020,520);
-            $image->toPng()->save(public_path('upload/portfolio_image/'.$filename));
-            $portfolio_image_url = 'upload/portfolio_image/'.$filename;
+            $home_image = $request->file('portfolio_image');
+                $filename = hexdec(uniqid()).'.'.$home_image->getClientOriginalExtension();
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($home_image);
+                $image->resize(1020,520)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                $main_image_url = 'upload/portfolio_image/'.$filename;
+                $portfolio->portfolio_image = $main_image_url;
 
-            Portfolio::insert([
-                'portfolio_name' => $request->portfolio_name,
-                'portfolio_title' => $request->portfolio_title,
-                'portfolio_category' => $request->portfolio_category,
-                'portfolio_description' => $request->portfolio_description,
-                'portfolio_image' => $portfolio_image_url,
-                'created_at' => Carbon::now(),
-            ]);
+                if ($request->file('detail_image')) {
+                    $detail_image = $request->file('detail_image');
+                    $filename = hexdec(uniqid()).'.'.$detail_image->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($detail_image);
+                    $image->resize(850,430)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $detail_image_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->detail_image = $detail_image_url;
+                }
+
+                if ($request->file('wrap_image1')) {
+                    $wrap_image1 = $request->file('wrap_image1');
+                    $filename = hexdec(uniqid()).'.'.$wrap_image1->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wrap_image1);
+                    $image->resize(414,348)->toPng()->save(base_path('public/upload/service_images/'.$filename));
+                    $wrap_image1_url = 'upload/service_images/'.$filename;
+                    $portfolio->wrap_image1 = $wrap_image1_url;
+                }
+
+                if ($request->file('wrap_image2')) {
+                    $wrap_image2 = $request->file('wrap_image2');
+                    $filename = hexdec(uniqid()).'.'.$wrap_image2->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wrap_image2);
+                    $image->resize(414,348)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $wrap_image2_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->wrap_image2 = $wrap_image2_url;
+                }
+
+                if ($request->file('wr_image')) {
+                    $wr_image = $request->file('wr_image');
+                    $filename = hexdec(uniqid()).'.'.$wr_image->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wr_image);
+                    $image->resize(648,616)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $wr_image_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->wr_image = $wr_image_url;
+                }
+
+                $portfolio->portfolio_name = $request->portfolio_name;
+                $portfolio->portfolio_title = $request->portfolio_title;
+                $portfolio->portfolio_category = $request->portfolio_category;
+                $portfolio->portfolio_description = $request->portfolio_description;
+                $portfolio->other_text = $request->other_text;
+                $portfolio->client_name = $request->client_name;
+                $portfolio->client_phone = $request->client_phone;
+                $portfolio->client_mail = $request->client_mail;
+                $portfolio->client_address = $request->client_address;
+                $portfolio->project_name = $request->project_name;
+                $portfolio->project_link = $request->project_link;
+                $portfolio->project_location = $request->project_location;
+                $portfolio->project_date = date('Y m d', strtotime($request->project_date));
+                $portfolio->facebook_handle = $request->facebook_handle;
+                $portfolio->twitter_handle = $request->twitter_handle;
+                $portfolio->instagram_handle = $request->instagram_handle;
+                $portfolio->linkedin_handle = $request->linkedin_handle;
+                $portfolio->youtube_handle = $request->youtube_handle;
+                $portfolio->save();
+
 
                 $notification = array(
                     'message' => 'Portfolio Inserted Successfully',
@@ -60,13 +114,14 @@ class PortfolioController extends Controller
                 );
 
                 return redirect()->route('view.portfolio')->with($notification);
+
         }else {
             $notification = array(
-                    'message' => 'Please choose an image',
-                    'alert-type' => 'error',
-                );
+                'message' => 'Please choose an image',
+                'alert-type' => 'error',
+            );
 
-                return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
         }
     }
 
@@ -87,35 +142,105 @@ class PortfolioController extends Controller
             'portfolio_title.required' => 'The portfolio title field is required',
         ]);
 
-        $oldimage = Portfolio::findOrFail($request->id);
+        $portfolio = Portfolio::findOrFail($request->id);
+        
+        if ($request->file('portfolio_image') || empty($request->file('portfolio_image'))) {
+                if ($request->file('portfolio_image')) {
+                    $home_image = $request->file('portfolio_image');
+                    @unlink($portfolio->portfolio_image);
+                    $filename = hexdec(uniqid()).'.'.$home_image->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($home_image);
+                    $image->resize(1020,520)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $main_image_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->portfolio_image = $main_image_url;
+                }
+            
 
-        if ($request->file('portfolio_image')) {
-            $portfolio_image = $request->file('portfolio_image');
-            $filename = hexdec(uniqid()).'.'.$portfolio_image->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read($portfolio_image);
-            $image->resize(1020,520);
-            $image->toPng()->save(public_path('upload/portfolio_image/'.$filename));
-            @unlink($oldimage->portfolio_image);
-            $portfolio_image_url = 'upload/portfolio_image/'.$filename;
+                if ($request->file('detail_image')) {
+                    $detail_image = $request->file('detail_image');
+                    @unlink($portfolio->detail_image);
+                    $filename = hexdec(uniqid()).'.'.$detail_image->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($detail_image);
+                    $image->resize(850,430)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $detail_image_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->detail_image = $detail_image_url;
+                }
 
-            Portfolio::findOrFail($request->id)->update([
-                'portfolio_name' => $request->portfolio_name,
-                'portfolio_title' => $request->portfolio_title,
-                'portfolio_category' => $request->portfolio_category,
-                'portfolio_description' => $request->portfolio_description,
-                'portfolio_image' => $portfolio_image_url,
-                // 'updated_at' => Carbon::now(),
-            ]);
+                if ($request->file('wrap_image1')) {
+                    $wrap_image1 = $request->file('wrap_image1');
+                    @unlink($portfolio->wrap_image1);
+                    $filename = hexdec(uniqid()).'.'.$wrap_image1->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wrap_image1);
+                    $image->resize(414,348)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $wrap_image1_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->wrap_image1 = $wrap_image1_url;
+                }
+
+                if ($request->file('wrap_image2')) {
+                    $wrap_image2 = $request->file('wrap_image2');
+                    @unlink($portfolio->wrap_image2);
+                    $filename = hexdec(uniqid()).'.'.$wrap_image2->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wrap_image2);
+                    $image->resize(414,348)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $wrap_image2_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->wrap_image2 = $wrap_image2_url;
+                }
+
+                if ($request->file('wr_image')) {
+                    $wr_image = $request->file('wr_image');
+                    @unlink($portfolio->wr_image);
+                    $filename = hexdec(uniqid()).'.'.$wr_image->getClientOriginalExtension();
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($wr_image);
+                    $image->resize(648,616)->toPng()->save(base_path('public/upload/portfolio_image/'.$filename));
+                    $wr_image_url = 'upload/portfolio_image/'.$filename;
+                    $portfolio->wr_image = $wr_image_url;
+                }
+
+                $portfolio->portfolio_name = $request->portfolio_name;
+                $portfolio->portfolio_title = $request->portfolio_title;
+                $portfolio->portfolio_category = $request->portfolio_category;
+                $portfolio->portfolio_description = $request->portfolio_description;
+                $portfolio->other_text = $request->other_text;
+                $portfolio->client_name = $request->client_name;
+                $portfolio->client_phone = $request->client_phone;
+                $portfolio->client_mail = $request->client_mail;
+                $portfolio->client_address = $request->client_address;
+                $portfolio->project_name = $request->project_name;
+                $portfolio->project_link = $request->project_link;
+                $portfolio->project_location = $request->project_location;
+                $portfolio->project_date = $request->project_date;
+                $portfolio->facebook_handle = $request->facebook_handle;
+                $portfolio->twitter_handle = $request->twitter_handle;
+                $portfolio->instagram_handle = $request->instagram_handle;
+                $portfolio->linkedin_handle = $request->linkedin_handle;
+                $portfolio->youtube_handle = $request->youtube_handle;
+                $portfolio->save();
 
         }else {
-            Portfolio::findOrFail($request->id)->update([
-                'portfolio_name' => $request->portfolio_name,
-                'portfolio_title' => $request->portfolio_title,
-                'portfolio_category' => $request->portfolio_category,
-                'portfolio_description' => $request->portfolio_description,
-                // 'updated_at' => Carbon::now(),
-            ]);
+                $portfolio->portfolio_name = $request->portfolio_name;
+                $portfolio->portfolio_title = $request->portfolio_title;
+                $portfolio->portfolio_category = $request->portfolio_category;
+                $portfolio->portfolio_description = $request->portfolio_description;
+                $portfolio->other_text = $request->other_text;
+                $portfolio->client_name = $request->client_name;
+                $portfolio->client_phone = $request->client_phone;
+                $portfolio->client_mail = $request->client_mail;
+                $portfolio->client_address = $request->client_address;
+                $portfolio->project_name = $request->project_name;
+                $portfolio->project_link = $request->project_link;
+                $portfolio->project_location = $request->project_location;
+                $portfolio->project_date = $request->project_date;
+                $portfolio->facebook_handle = $request->facebook_handle;
+                $portfolio->twitter_handle = $request->twitter_handle;
+                $portfolio->instagram_handle = $request->instagram_handle;
+                $portfolio->linkedin_handle = $request->linkedin_handle;
+                $portfolio->youtube_handle = $request->youtube_handle;
+                $portfolio->save();
         }
 
                 $notification = array(
@@ -136,6 +261,18 @@ class PortfolioController extends Controller
             'alert-type' => 'success',
         );
             return redirect()->route('view.portfolio')->with($notification);
+    }
+
+    public function PortfolioDetails($id)
+    {
+        $editData = Portfolio::findOrFail($id);
+        return view('frontend.portfolio.portfolio_details',compact('editData'));
+    }
+
+    public function AllPortfolio()
+    {
+        $allData = Portfolio::all();
+        return view('frontend.portfolio.portfolio_all',compact('allData'));
     }
 
 

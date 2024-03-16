@@ -49,13 +49,6 @@
                       </div>
                     </div>
 
-                    <!-- <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
-                      <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
-                      </div>
-                    </div> -->
-
                     <div class="row mb-3">
                       <label for="video_url" class="col-md-4 col-lg-3 col-form-label">Video Url</label>
                       <div class="col-md-8 col-lg-9">

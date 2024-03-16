@@ -32,7 +32,9 @@
                     <th width="5%">Sl.</th>
                     <th width="20%">Portfolio Name</th>
                     <th width="25%">Portfolio Title</th>
-                    <th width="15%">Image</th>
+                    <th width="15%">Category</th>
+                    <th width="10%">Image</th>
+                    <th width="10%">Detail Image</th>
                     <th width="20%">Action</th>
                   </tr>
                 </thead>
@@ -43,7 +45,9 @@
                     <td>{{ $i++ }}</td>
                     <td>{{ $item->portfolio_name }}</td>
                     <td>{{ $item->portfolio_title }}</td>
+                    <td>{{ $item->portfolio_category }}</td>
                     <td><img src="{{ asset($item->portfolio_image) }}" style="width: 60px; height: 50px;"></td>
+                    <td><img src="{{ asset($item->detail_image) }}" style="width: 60px; height: 50px;"></td>
                     <td>
                       <a href="{{ route('portfolio.edit', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="bx bxs-edit"></i></a> |
                       <a href="{{ route('portfolio.delete', $item->id) }}" id="delete" class="btn btn-danger" title="Delete Data"><i class="bx bxs-trash"></i></a>

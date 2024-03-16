@@ -22,12 +22,37 @@ $route = Route::current()->getName();
 
       <li class="nav-item">
         <a class="nav-link collapsed active" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-square-half"></i><span>HomeSlide Setup</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-square-half"></i><span>Home Setup</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse {{ ($route == 'home.slide') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse {{ ($route == 'home.slide' || $route == 'upload.partner.image' || $route == 'partner.image.edit' || $route == 'view.partner' || $route == 'client.feedback' || $route == 'client.feedback.add' || $route == 'edit.client.feedback' || $route == 'client.image' || $route == 'client.image.add' || $route == 'add.service' || $route == 'all.service') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('home.slide') }}" class="{{ ($route == 'home.slide') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Home Slide</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('view.partner') }}" class="{{ ($route == 'view.partner') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Update Partners</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('upload.partner.image') }}" class="{{ ($route == 'upload.partner.image') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Upload Partner Images</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('client.feedback') }}" class="{{ ($route == 'client.feedback') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Client Feedback</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('client.image') }}" class="{{ ($route == 'client.image') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Client Images</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('all.service') }}" class="{{ ($route == 'all.service' || $route == 'add.service') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>All Services</span>
             </a>
           </li>
         </ul>
@@ -89,22 +114,36 @@ $route = Route::current()->getName();
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-gem"></i><span>Blog Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="icons-nav" class="nav-content collapse {{ ($route == 'all.blog.category' || $route == 'add.blog.category') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
+            <a href="{{ route('all.blog.category') }}" class="{{ ($route == 'all.blog.category') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>All Blog Category</span>
             </a>
           </li>
           <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
+            <a href="{{ route('add.blog.category') }}" class="{{ ($route == 'add.blog.category') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Add Blog Category</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Blog</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse {{ ($route == 'all.blog' || $route == 'add.blog') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ route('all.blog') }}" class="{{ ($route == 'all.blog') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>All Blog</span>
             </a>
           </li>
           <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
+            <a href="{{ route('add.blog') }}" class="{{ ($route == 'add.blog') ? 'active' : ''}}">
+              <i class="bi bi-circle"></i><span>Add Blog</span>
             </a>
           </li>
         </ul>

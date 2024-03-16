@@ -219,102 +219,21 @@
                     </div>
                     <div class="services__style__two__wrap">
                         <div class="row gx-0">
+                            @foreach($service as $item)
                             <div class="col-xl-3 col-lg-4 col-md-6">
                                 <div class="services__style__two__item">
                                     <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon01.png') }}" alt="">
+                                        <img src="{{ asset($item->icon ) }}" alt="">
                                     </div>
                                     <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Business Strategy</a></h3>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
+                                        <h3 class="title"><a href="services-details.html">{{ $item->title }}</a></h3>
+                                        <p>{!! Str::limit($item->short_description, 90) !!}</p>
+                                        <a href="{{ route('service.details', $item->id) }}" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon02.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Visual Design</a></h3>
-                                        <p>Strategy is a forward-looking plan for your brand’s behavior.Strategy is a forward-looking plan.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon03.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Product Design</a></h3>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon05.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Animation</a></h3>
-                                        <p>Strategy is a forward-looking plan for your brand’s behavior.Strategy is a forward-looking plan.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon06.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Marketing</a></h3>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon05.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Brand strategy</a></h3>
-                                        <p>Strategy is a forward-looking plan for your brand’s behavior.Strategy is a forward-looking plan.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon04.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Graphic Design</a></h3>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-4 col-md-6">
-                                <div class="services__style__two__item">
-                                    <div class="services__style__two__icon">
-                                        <img src="{{ asset('frontend/assets/img/icons/services_light_icon07.png') }}" alt="">
-                                    </div>
-                                    <div class="services__style__two__content">
-                                        <h3 class="title"><a href="services-details.html">Visual Design</a></h3>
-                                        <p>Strategy is a forward-looking plan for your brand’s behavior.Strategy is a forward-looking plan.</p>
-                                        <a href="services-details.html" class="services__btn"><i class="far fa-long-arrow-right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -332,34 +251,23 @@
                                     <h2 class="title">Some happy clients feedback</h2>
                                 </div>
                                 <div class="testimonial__two__active">
+                                    @foreach($feedback as $item)
                                     <div class="testimonial__item">
                                         <div class="testimonial__icon">
                                             <i class="fas fa-quote-left"></i>
                                         </div>
                                         <div class="testimonial__content">
-                                            <p>We are motivated by the satisfaction of our clients. Put your trust in us &share in our H.Spond Asset Management is made up of a team of expert, committed and experienced people with a passion for financial markets. Our goal is to achieve continuous.</p>
+                                            <p>{{ $item->client_feedback }}</p>
                                             <div class="testimonial__avatar">
-                                                <span>WPBakery/ uSA</span>
+                                                <span>{{ $item->client_name }}</span>
                                                 <div class="testi__avatar__img">
                                                     <img src="{{ asset('frontend/assets/img/images/testi_avatar01.png') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="testimonial__item">
-                                        <div class="testimonial__icon">
-                                            <i class="fas fa-quote-left"></i>
-                                        </div>
-                                        <div class="testimonial__content">
-                                            <p>We are motivated by the satisfaction of our clients. Put your trust in us &share in our H.Spond Asset Management is made up of a team of expert, committed and experienced people with a passion for financial markets. Our goal is to achieve continuous.</p>
-                                            <div class="testimonial__avatar">
-                                                <span>Adobe Photoshop</span>
-                                                <div class="testi__avatar__img">
-                                                    <img src="{{ asset('frontend/assets/img/images/testi_avatar02.png') }}" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+
                                 </div>
                                 <div class="testimonial__arrow"></div>
                             </div>
