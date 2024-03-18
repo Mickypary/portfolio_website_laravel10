@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('wrap_image')->nullable();
             $table->string('wrap_image2')->nullable();
             $table->text('other_text')->nullable();
+            $table->string('blog_thumb')->nullable();
+            $table->string('post_thumb')->nullable();
+            $table->string('created_by')->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

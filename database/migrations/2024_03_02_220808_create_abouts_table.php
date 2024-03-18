@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
             $table->string('about_image')->nullable();
+            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

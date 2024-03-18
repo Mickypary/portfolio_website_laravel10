@@ -79,7 +79,7 @@
                                         <li><span>Location :</span> {{ $editData->client_address }}</li>
                                         <li><span>Client :</span> {{ $editData->client_name }}</li>
                                         <li class="cagegory"><span>Category :</span>
-                                            <a href="portfolio.html">{{ $editData->portfolio_category }},</a>
+                                            <a href="{{ $editData->project_link }}">{{ $editData->portfolio_category }},</a>
                                             <a href="portfolio.html">UI/UX</a>
                                         </li>
                                         <li><span>Project Link :</span> <a target="_blank" href="{{ $editData->project_link }}">{{ $editData->project_link }}</a></li>

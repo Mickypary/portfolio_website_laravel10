@@ -75,6 +75,16 @@
                       </div>
                     </div>
 
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Resume</label>
+                      <div class="col-md-8 col-lg-9">     
+                        <div class="pt-2">
+                          <input type="file" name="resume" class="form-control" id="image">
+                        </div>
+                        <img id="showImage" src="{{ (!empty($aboutpage->resume) ? asset($aboutpage->resume) : url('upload/no_image.jpg')) }}" alt="Slides" width="120px" height="120px">
+                      </div>
+                    </div>
+
 
 
                     <div class="text-center">

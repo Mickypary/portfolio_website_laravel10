@@ -137,6 +137,9 @@ Route::get('service/details/{id}', [HomeController::class, 'ServiceDetails'])->n
 Route::get('service/details', [HomeController::class, 'ServiceDetailsMenu'])->name('service.details.menu');
 Route::get('portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');
 Route::get('portfolio/all', [PortfolioController::class, 'AllPortfolio'])->name('portfolio.menu');
+Route::get('download/resume/{file_name}', [HomeController::class, 'DownloadResume'])->name('download.resume');
+Route::get('blog/details/{id}', [BlogController::class, 'BlogDetails'])->name('blog.details');
+Route::get('blog/category/{blog_category_id}', [BlogController::class, 'BlogCategory'])->name('blog.category');
 
 
 
@@ -180,6 +183,9 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
             Route::get('all','AllBlog')->name('all.blog');
             Route::get('add','AddBlog')->name('add.blog');
             Route::post('store','StoreBlog')->name('store.blog');
+            Route::get('edit/{id}','EditBlog')->name('edit.blog');
+            Route::post('update','UpdateBlog')->name('update.blog');
+            Route::get('delete/{id}','DeleteBlog')->name('delete.blog');
         });
     });  
 });

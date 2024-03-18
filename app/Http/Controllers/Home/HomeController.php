@@ -581,5 +581,11 @@ class HomeController extends Controller
     }
 
 
+    public function DownloadResume($file_name) {
+        $file_path = public_path('upload/download/'.$file_name);
+        return response()->download($file_path);
+    }
+
+
 
 } // End Class

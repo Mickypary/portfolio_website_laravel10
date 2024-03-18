@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <p class="desc">{{ $about->short_description }}</p>
-                                <a href="about.html" class="btn" style="background-color: #09A4B5;">Download my resume</a>
+                                <a href="{{ route('download.resume', $about->resume) }}" class="btn" style="background-color: #09A4B5;">Download my resume</a>
                             </div>
                         </div>
                     </div>

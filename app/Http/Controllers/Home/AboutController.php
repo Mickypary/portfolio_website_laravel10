@@ -28,25 +28,40 @@ class AboutController extends Controller
     public function UpdateAbout(Request $request)
     {
         $data = About::findOrFail($request->id);
-        if ($request->file('about_image')) {
-            $file = $request->file('about_image');
-            // $filename = date('YmdHi').$file->getClientOriginalName();
-            $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read($file);
-            $image->resize(523,605);
-            $image->toPng()->save(base_path('public/upload/about_image/'.$filename));
-            // $file->move(public_path('upload/about_image'),$filename);
-            @unlink(public_path($data->about_image));
-            $about_image_url = 'upload/about_image/'.$filename;
+        if ($request->file('about_image') || empty($request->file('about_image'))) {
+            if ($request->file('about_image')) {
+                $file = $request->file('about_image');
+                // $filename = date('YmdHi').$file->getClientOriginalName();
+                $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($file);
+                $image->resize(523,605);
+                $image->toPng()->save(base_path('public/upload/about_image/'.$filename));
+                // $file->move(public_path('upload/about_image'),$filename);
+                @unlink(public_path($data->about_image));
+                $about_image_url = 'upload/about_image/'.$filename;
+                $data->about_image = $about_image_url;
+                $data->save();
+            }
+            
 
-            $aboutpage = About::findOrFail($request->id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'short_description' => $request->short_description,
-                'long_description' => $request->long_description,
-                'about_image' => $about_image_url,
-            ]);
+            if ($request->file('resume')) {
+                $file = $request->file('resume');
+                // $filename = date('YmdHi').$file->getClientOriginalName();
+                $filename = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('upload/download'),$filename);
+                @unlink(public_path($data->resume));
+                $resume_url = $filename;
+                $data->resume = $resume_url;
+                $data->save();
+            }
+
+                $aboutpage = About::findOrFail($request->id)->update([
+                    'title' => $request->title,
+                    'short_title' => $request->short_title,
+                    'short_description' => $request->short_description,
+                    'long_description' => $request->long_description,
+                ]);
         }else {
             $aboutpage = About::findOrFail($request->id)->update([
                 'title' => $request->title,
