@@ -9,6 +9,8 @@ use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
+use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Home\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,9 @@ use App\Http\Controllers\Home\BlogController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('admin/index');
@@ -132,14 +134,19 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
 
 
 // FrontEnd Menu Link for About
+Route::get('/',[HomeController::class, 'Home'])->name('home');
 Route::get('about',[AboutController::class, 'HomeAbout'])->name('about.menu');
 Route::get('service/details/{id}', [HomeController::class, 'ServiceDetails'])->name('service.details');
-Route::get('service/details', [HomeController::class, 'ServiceDetailsMenu'])->name('service.details.menu');
+Route::get('service/all', [HomeController::class, 'ServiceDetailsMenu'])->name('service.details.menu');
 Route::get('portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');
 Route::get('portfolio/all', [PortfolioController::class, 'AllPortfolio'])->name('portfolio.menu');
 Route::get('download/resume/{file_name}', [HomeController::class, 'DownloadResume'])->name('download.resume');
 Route::get('blog/details/{id}', [BlogController::class, 'BlogDetails'])->name('blog.details');
-Route::get('blog/category/{blog_category_id}', [BlogController::class, 'BlogCategory'])->name('blog.category');
+Route::get('category/blog/{blog_category_id}', [BlogController::class, 'BlogCategory'])->name('blog.category');
+Route::get('all/blog', [BlogController::class, 'AllBlogNews'])->name('all.blog.news');
+Route::get('contact', [ContactController::class, 'ContactMe'])->name('contact.me');
+Route::post('store/message', [ContactController::class, 'StoreMessage'])->name('store.message');
+Route::post('get/in/touch', [ContactController::class, 'GetInTouch'])->name('get.in.touch');
 
 
 
@@ -186,6 +193,31 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
             Route::get('edit/{id}','EditBlog')->name('edit.blog');
             Route::post('update','UpdateBlog')->name('update.blog');
             Route::get('delete/{id}','DeleteBlog')->name('delete.blog');
+        });
+    });  
+});
+
+
+
+
+// Footer All Route
+Route::middleware(['auth','prevent-back-history'])->group(function () {
+    Route::prefix('footer')->group(function () {
+        Route::controller(FooterController::class)->group(function () {
+            Route::get('setup','FooterSetup')->name('footer.setup');
+            Route::post('update','UpdateFooter')->name('footer.update');
+        });
+    });  
+});
+
+
+
+// Contact All Route
+Route::middleware(['auth','prevent-back-history'])->group(function () {
+    Route::prefix('contact')->group(function () {
+        Route::controller(ContactController::class)->group(function () {
+            Route::get('message','ContactMessage')->name('contact.message');
+            Route::get('delete/message/{id}','DeleteMessage')->name('delete.message');
         });
     });  
 });

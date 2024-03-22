@@ -3,6 +3,10 @@
 
 @section('main')
 
+@section('title')
+    Blog | MES
+@endsection
+
         <!-- main-area -->
         <main>
 
@@ -12,7 +16,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-6 col-lg-8 col-md-10">
                             <div class="breadcrumb__wrap__content">
-                                <h2 class="title">{{ $blogpost[0]->category->blog_category }}</h2>
+                                <h2 class="title">All Blogs</h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -114,19 +118,7 @@
                                     <h4 class="widget-title">Recent Comment</h4>
                                     <ul class="sidebar__comment">
                                         <li class="sidebar__comment__item">
-                                            <a href="blog-details.html">Rasalina Sponde</a>
-                                            <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                                        </li>
-                                        <li class="sidebar__comment__item">
-                                            <a href="blog-details.html">Rasalina Sponde</a>
-                                            <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                                        </li>
-                                        <li class="sidebar__comment__item">
-                                            <a href="blog-details.html">Rasalina Sponde</a>
-                                            <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                                        </li>
-                                        <li class="sidebar__comment__item">
-                                            <a href="blog-details.html">Rasalina Sponde</a>
+                                            <a href="#">Rasalina Sponde</a>
                                             <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
                                         </li>
                                     </ul>
@@ -134,17 +126,9 @@
                                 <div class="widget">
                                     <h4 class="widget-title">Popular Tags</h4>
                                     <ul class="sidebar__tags">
-                                        <li><a href="blog.html">Business</a></li>
-                                        <li><a href="blog.html">Design</a></li>
-                                        <li><a href="blog.html">apps</a></li>
-                                        <li><a href="blog.html">landing page</a></li>
-                                        <li><a href="blog.html">data</a></li>
-                                        <li><a href="blog.html">website</a></li>
-                                        <li><a href="blog.html">book</a></li>
-                                        <li><a href="blog.html">Design</a></li>
-                                        <li><a href="blog.html">product design</a></li>
-                                        <li><a href="blog.html">landing page</a></li>
-                                        <li><a href="blog.html">data</a></li>
+                                        @foreach($blogpost as $item)
+                                        <li><a href="blog.html">{{ $item->blog_tags }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </aside>

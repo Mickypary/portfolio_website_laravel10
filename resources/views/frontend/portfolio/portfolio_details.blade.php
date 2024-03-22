@@ -63,15 +63,10 @@
                         </div>
                         <div class="col-lg-4">
                             <aside class="services__sidebar">
-                                <div class="widget">
-                                    <h5 class="title">Get in Touch</h5>
-                                    <form action="#" class="sidebar__contact">
-                                        <input type="text" placeholder="Enter name*">
-                                        <input type="email" placeholder="Enter your mail*">
-                                        <textarea name="message" id="message" placeholder="Massage*"></textarea>
-                                        <button type="submit" class="btn">send message</button>
-                                    </form>
-                                </div>
+                                <!--  Start Get In Touch -->
+                                @include('frontend.widget.get_in_touch')
+                                <!-- End Get In Touch -->
+
                                 <div class="widget">
                                     <h5 class="title">Project Information</h5>
                                     <ul class="sidebar__contact__info">

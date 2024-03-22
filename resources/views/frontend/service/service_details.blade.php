@@ -3,6 +3,10 @@
 
 @section('main')
 
+@section('title')
+    Service | MES
+@endsection
+
 
         <!-- main-area -->
         <main>
@@ -64,32 +68,13 @@
                         </div>
                         <div class="col-lg-4">
                             <aside class="services__sidebar">
-                                <div class="widget">
-                                    <h5 class="title">Get in Touch</h5>
-                                    <form action="#" class="sidebar__contact">
-                                        <input type="text" placeholder="Enter name*">
-                                        <input type="email" placeholder="Enter your mail*">
-                                        <textarea name="message" id="message" placeholder="Massage*"></textarea>
-                                        <button type="submit" class="btn">send massage</button>
-                                    </form>
-                                </div>
-                                <div class="widget">
-                                    <h5 class="title">Contact Information</h5>
-                                    <ul class="sidebar__contact__info">
-                                        <li><span>Address :</span> 8638 Amarica Stranfod, <br> Mailbon Star</li>
-                                        <li><span>Mail :</span> yourmail@gmail.com</li>
-                                        <li><span>Phone :</span> +7464 0187 3535 645</li>
-                                        <li><span>Fax id :</span> +9 659459 49594</li>
-                                    </ul>
-                                    <ul class="sidebar__contact__social">
-                                        <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    </ul>
-                                </div>
+                                <!-- Start Get In Touch -->
+                                @include('frontend.widget.get_in_touch')
+                                <!-- End Get In Touch -->
+                                
+                                <!-- Start Contact -->
+                                @include('frontend.widget.contact_widget')
+                                <!-- End Contact -->
                             </aside>
                         </div>
                     </div>

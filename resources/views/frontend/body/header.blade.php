@@ -1,3 +1,11 @@
+@php
+
+$route = Route::current()->getName();
+
+@endphp
+
+
+
 <!doctype html>
 <html class="no-js" lang="en">
     <head>
@@ -10,6 +18,8 @@
 		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
         <!-- Place favicon.ico in the root directory -->
 
+        
+
 		<!-- CSS here -->
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
@@ -19,6 +29,9 @@
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/default.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+
+        
+
     </head>
     <body>
 
@@ -49,22 +62,21 @@
                                     </div>
                                     <div class="navbar__wrap main__menu d-none d-xl-flex">
                                         <ul class="navigation">
-                                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                                            <li><a href="{{ route('about.menu') }}">About</a></li>
-                                            <li><a href="{{ route('service.details.menu') }}">Services</a></li>
-                                            <li class="menu-item-has-children"><a href="#">Portfolio</a>
-                                                <ul class="sub-menu">
+                                            <li class="{{ $route == 'home' ? 'active' : ''}}"><a href="{{ route('home') }}">Home</a></li>
+                                            <li class="{{ $route == 'about.menu' ? 'active' : ''}}"><a href="{{ route('about.menu') }}">About</a></li>
+                                            <li class="{{ $route == 'service.details.menu' ? 'active' : ''}}"><a href="{{ route('service.details.menu') }}">Services</a></li>
+                                            <li class="menu-item-has-children {{ $route == 'portfolio.menu' ? 'active' : ''}}"><a href="{{ route('portfolio.menu') }}">Portfolio</a>
+                                                <!-- <ul class="sub-menu">
                                                     <li><a href="{{ route('portfolio.menu') }}">Portfolio</a></li>
-                                                    <!-- <li><a href="portfolio-details.html">Portfolio Details</a></li> -->
-                                                </ul>
+                                                    <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                                                </ul> -->
                                             </li>
-                                            <li class="menu-item-has-children"><a href="#">Our Blog</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="blog.html">Our News</a></li>
-                                                    <li><a href="blog-details.html">News Details</a></li>
-                                                </ul>
+                                            <li class="menu-item-has-children {{ $route == 'all.blog.news' ? 'active' : ''}}"><a href="{{ route('all.blog.news') }}">Our Blog</a>
+                                                <!-- <ul class="sub-menu">
+                                                    <li><a href="{{ route('all.blog.news') }}">Our News</a></li>
+                                                </ul> -->
                                             </li>
-                                            <li><a href="contact.html">contact me</a></li>
+                                            <li class="{{ $route == 'contact.me' ? 'active' : ''}}"><a href="{{ route('contact.me') }}">contact me</a></li>
                                         </ul>
                                     </div>
                                     <div class="header__btn d-none d-md-block">

@@ -250,8 +250,16 @@ class BlogController extends Controller
         $recentblogs = Blog::latest()->limit(5)->get();
         $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
         $blogpost = Blog::where('blog_category_id',$blog_category_id)->orderBy('id','desc')->get();
-        // dd($blogpost);
+        // dd($categories);
         return view('frontend.blog.blog_cat_details', compact('blogpost','recentblogs','categories'));
+    }
+
+    public function AllBlogNews()
+    {
+        $recentblogs = Blog::latest()->limit(5)->get();
+        $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
+        $blogpost = Blog::latest()->get();
+        return view('frontend.blog.blog_all', compact('blogpost','recentblogs','categories'));
     }
 
 

@@ -16,6 +16,7 @@ use App\Models\AboutEducation;
 use App\Models\AboutAward;
 use App\Models\HomeService;
 use App\Models\ClientFeedback;
+use App\Models\Blog;
 
 class AboutController extends Controller
 {
@@ -87,7 +88,8 @@ class AboutController extends Controller
         $award = AboutAward::all();
         $service = HomeService::all();
         $feedback = ClientFeedback::all();
-        return view('frontend.about_single_page', compact('about','multi_image','education','award','service','feedback'));
+        $blog = Blog::latest()->limit(3)->get();
+        return view('frontend.about_single_page', compact('about','multi_image','education','award','service','feedback','blog'));
     }
 
 

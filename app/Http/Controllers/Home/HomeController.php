@@ -586,6 +586,11 @@ class HomeController extends Controller
         return response()->download($file_path);
     }
 
+    public function Home()
+    {
+        return view('frontend.index');
+    }
+
 
 
 } // End Class

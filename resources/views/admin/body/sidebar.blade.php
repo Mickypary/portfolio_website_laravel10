@@ -21,10 +21,10 @@ $route = Route::current()->getName();
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed active" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-square-half"></i><span>Home Setup</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed active" data-bs-target="#home-nav" data-bs-toggle="collapse" href="#">
+          <i class="ri-home-7-fill"></i><span>Home Setup</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse {{ ($route == 'home.slide' || $route == 'upload.partner.image' || $route == 'partner.image.edit' || $route == 'view.partner' || $route == 'client.feedback' || $route == 'client.feedback.add' || $route == 'edit.client.feedback' || $route == 'client.image' || $route == 'client.image.add' || $route == 'add.service' || $route == 'all.service') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
+        <ul id="home-nav" class="nav-content collapse {{ ($route == 'home.slide' || $route == 'upload.partner.image' || $route == 'partner.image.edit' || $route == 'view.partner' || $route == 'client.feedback' || $route == 'client.feedback.add' || $route == 'edit.client.feedback' || $route == 'client.image' || $route == 'client.image.add' || $route == 'add.service' || $route == 'all.service') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('home.slide') }}" class="{{ ($route == 'home.slide') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>Home Slide</span>
@@ -60,7 +60,7 @@ $route = Route::current()->getName();
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#about-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-square-half"></i><span>About Page Setup</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="ri-layout-3-fill"></i><span>About Page Setup</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="about-nav" class="nav-content collapse {{ ($route == 'about.page' || $route == 'add.multi.image' || $route == 'multi.image.edit' || $route == 'view.multi.image' || $route == 'education.view' || $route == 'education.edit' || $route == 'education.add' || $route == 'award.add' || $route == 'award.view') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
@@ -113,10 +113,10 @@ $route = Route::current()->getName();
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Blog Category</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#blogcat-nav" data-bs-toggle="collapse" href="#">
+          <i class="ri-mist-line"></i><span>Blog Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="icons-nav" class="nav-content collapse {{ ($route == 'all.blog.category' || $route == 'add.blog.category') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
+        <ul id="blogcat-nav" class="nav-content collapse {{ ($route == 'all.blog.category' || $route == 'add.blog.category') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('all.blog.category') }}" class="{{ ($route == 'all.blog.category') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>All Blog Category</span>
@@ -132,10 +132,10 @@ $route = Route::current()->getName();
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Blog</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed" data-bs-target="#blog-nav" data-bs-toggle="collapse" href="#">
+          <i class="ri-pages-fill"></i><span>Blog</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="icons-nav" class="nav-content collapse {{ ($route == 'all.blog' || $route == 'add.blog') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
+        <ul id="blog-nav" class="nav-content collapse {{ ($route == 'all.blog' || $route == 'add.blog') ? 'show' : ''}}" data-bs-parent="#sidebar-nav">
           <li>
             <a href="{{ route('all.blog') }}" class="{{ ($route == 'all.blog') ? 'active' : ''}}">
               <i class="bi bi-circle"></i><span>All Blog</span>
@@ -149,21 +149,21 @@ $route = Route::current()->getName();
         </ul>
       </li><!-- End Icons Nav -->
 
-      <li class="nav-heading">Pages</li>
+      <li class="nav-heading"></li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="{{ route('footer.setup') }}">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <span>Footer</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="{{ route('contact.message') }}">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>Contact Message</span>
         </a>
       </li><!-- End Login Page Nav -->
 

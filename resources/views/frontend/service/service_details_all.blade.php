@@ -3,6 +3,10 @@
 
 @section('main')
 
+@section('title')
+    Services | MES
+@endsection
+
 
         <!-- main-area -->
         <main>
