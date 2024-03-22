@@ -28,17 +28,14 @@
               <div class="tab-content pt-2">
 
                   <!-- Profile Edit Form -->
-                  <form method="POST" action="{{ route('store.blog.category') }}">
+                  <form method="POST" id="myForm" action="{{ route('store.blog.category') }}">
                   	@csrf
                     
 
                     <div class="row mb-3">
                       <label for="title" class="col-md-4 col-lg-3 col-form-label">Blog Category</label>
-                      <div class="col-md-8 col-lg-9">
+                      <div class="col-md-8 col-lg-9 form-group">
                         <input name="blog_category" type="text" class="form-control" id="blog_category" value="">
-                        @error('blog_category')
-                          <span class="text-danger">{{ $message }}</span>
-                        @enderror
                       </div>
                     </div>
 
@@ -58,6 +55,40 @@
         </div>
       </div>
     </section>
+
+
+    <script type="text/javascript">
+      
+      $(document).ready(function () {
+        $('#myForm').validate({
+            rules : {
+                blog_category: {
+                    required: true,
+                },
+            },
+            messages: {
+              blog_category: {
+                  required: 'Please Enter Blog Category',
+              },
+            },
+            errorElement: 'span',
+            errorPlacement: function(error,element) {
+              error.addClass('invalid-feedback');
+              element.closest('form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+              $(element).addClass('is-invalid')
+            },
+            unhighlight: function(element, errorClass, validClass) {
+              $(element).removeClass('is-invalid')
+            },
+        })
+      });
+
+
+
+
+    </script>
 
 
 

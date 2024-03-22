@@ -45,7 +45,7 @@ $footer = App\Models\Footer::find(1);
                                 <h4 class="title">socially connect</h4>
                             </div>
                             <div class="footer__widget__social">
-                                <p>Lorem ipsum dolor sit amet enim. <br> Etiam ullamcorper.</p>
+                                <p>Check us out on our social media handles <br> below: </p>
                                 <ul class="footer__social__list">
                                     <li><a href="{{ $footer->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="{{ $footer->twitter }}"><i class="fab fa-twitter"></i></a></li>
