@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 03:23 PM
+-- Generation Time: Mar 22, 2024 at 05:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `abouts` (
 --
 
 INSERT INTO `abouts` (`id`, `title`, `short_title`, `short_description`, `long_description`, `about_image`, `resume`, `created_at`, `updated_at`) VALUES
-(1, 'I will transform your ideas into remarkable digital products', '15+ Years Experience In this game, Means Product Designing', 'I love to work in User Experience & User Interface designing. Because I love to solve the design problem and find easy and better solutions to solve it. I always try my best to make good user interface with the best user experience. I have been working as a UX Designer.', '<p class=\"desc\">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of lorem ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the lorem ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated lorem ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n<ul class=\"about__exp__list\">\r\n<li>\r\n<h5 class=\"title\">User experience design - (Product Design)</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to unseery.</p>\r\n</li>\r\n<li>\r\n<h5 class=\"title\">Web and user interface design - Development</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of lorem ipsum.</p>\r\n</li>\r\n<li>\r\n<h5 class=\"title\">Interaction design - Animation</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable.</p>\r\n</li>\r\n</ul>', 'upload/about_image/1793696902020657.png', '1793699800922847.pdf', NULL, '2024-03-16 16:10:31');
+(1, 'I will transform your ideas into remarkable digital products', '15+ Years Experience In this industry, Means Product Designing', 'I love to work in User Experience & User Interface designing. Because I love to solve the design problem and find easy and better solutions to solve it. I always try my best to make good user interface with the best user experience. I have been working as a UX Designer and as a Web Developer for over 15 years. You can count on my ability.', '<p class=\"desc\">My name is Michael Kobru. I am the founder and CEO of MrichTech Expert Solution. My passion for technology made me delve into it and as a person who delight joy in helping people solve their problem, I was able to see this come to light when I use my skills and knowledge to bring solutions to reality.</p>\r\n<ul class=\"about__exp__list\">\r\n<li>\r\n<h5 class=\"title\">User experience design - (Product Design)</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to unseery.</p>\r\n</li>\r\n<li>\r\n<h5 class=\"title\">Web and user interface design - Development</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable. If you are going to use a passage of lorem ipsum.</p>\r\n</li>\r\n<li>\r\n<h5 class=\"title\">Interaction design - Animation</h5>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which dont look even slightly believable.</p>\r\n</li>\r\n</ul>', 'upload/about_image/1793696902020657.png', '1793699800922847.pdf', NULL, '2024-03-19 15:16:26');
 
 -- --------------------------------------------------------
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `blog_categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `blog_categories`
@@ -184,6 +184,36 @@ INSERT INTO `client_feedback` (`id`, `client_feedback`, `client_name`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE IF NOT EXISTS `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `budget` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `subject`, `phone`, `address`, `budget`, `message`, `created_at`, `updated_at`) VALUES
+(1, 'Michael Kobru', 'mikipary@gmail.com', NULL, '08138600137', NULL, NULL, 'Pls get in touch', '2024-03-22 08:45:14', NULL),
+(2, 'Michael Kobru', 'mikipary@gmail.com', NULL, '08138600137', NULL, NULL, 'hfjfjf', '2024-03-22 09:06:29', NULL),
+(3, 'Michael Kobru', 'mikipary@gmail.com', NULL, '08138600137', NULL, NULL, 'ghjh', '2024-03-22 10:43:36', NULL),
+(4, 'Michael Kobru', 'mikipary@gmail.com', NULL, '08138600137', NULL, NULL, 'asdf', '2024-03-22 11:03:57', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -198,6 +228,38 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `footers`
+--
+
+CREATE TABLE IF NOT EXISTS `footers` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `phone_no` varchar(255) DEFAULT NULL,
+  `short_description` text DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `country` text DEFAULT NULL,
+  `motto` text DEFAULT NULL,
+  `facebook` text DEFAULT NULL,
+  `twitter` text DEFAULT NULL,
+  `instagram` text DEFAULT NULL,
+  `linkedin` text DEFAULT NULL,
+  `youtube` text DEFAULT NULL,
+  `copyright` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `footers`
+--
+
+INSERT INTO `footers` (`id`, `phone_no`, `short_description`, `address`, `email`, `country`, `motto`, `facebook`, `twitter`, `instagram`, `linkedin`, `youtube`, `copyright`, `created_at`, `updated_at`) VALUES
+(1, '+2348138600137', 'At MrichTech, we take pride in our ability to transform your business challenges to strength in a technologically driven way .', '18 Ladoke Akintola Street, GRA Ikeja Lagos.', 'mikipary@gmail.com', 'Nigeria', 'Trust the process, we will deliver', 'https://www.facebook.com/mrichtec', 'https://www.twitter.com/mrichtec', 'https://www.instagram.com/mrichtec', 'https://www.linkedin.com/mrichtec', 'https://www.youtube.com/mrichtec', 'Copyright @ MrichTech Expert Solutions 2024 All right Reserved', NULL, '2024-03-19 15:44:12');
 
 -- --------------------------------------------------------
 
@@ -343,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -366,7 +428,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2024_03_07_082550_create_portfolios_table', 11),
 (23, '2024_03_14_145023_create_blog_categories_table', 12),
 (25, '2024_03_02_220808_create_abouts_table', 14),
-(26, '2024_03_15_133132_create_blogs_table', 15);
+(26, '2024_03_15_133132_create_blogs_table', 15),
+(29, '2024_03_19_092538_create_footers_table', 16),
+(31, '2024_03_20_074844_create_contacts_table', 17);
 
 -- --------------------------------------------------------
 
