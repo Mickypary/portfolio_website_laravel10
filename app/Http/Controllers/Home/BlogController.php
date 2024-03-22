@@ -258,7 +258,7 @@ class BlogController extends Controller
     {
         $recentblogs = Blog::latest()->limit(5)->get();
         $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
-        $blogpost = Blog::latest()->get();
+        $blogpost = Blog::latest()->paginate(3);
         return view('frontend.blog.blog_all', compact('blogpost','recentblogs','categories'));
     }
 
