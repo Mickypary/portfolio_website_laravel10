@@ -1,5 +1,11 @@
 @extends('frontend.front_master')
 
+@php
+
+$footer = App\Models\Footer::find(1);
+
+@endphp
+
 
 @section('main')
 
@@ -44,8 +50,7 @@
 
             <!-- contact-map -->
             <div id="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96811.54759587669!2d-74.01263924803828!3d40.6880494567041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25bae694479a3%3A0xb9949385da52e69e!2sBarclays%20Center!5e0!3m2!1sen!2sbd!4v1636195194646!5m2!1sen!2sbd"
-                    allowfullscreen loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5116813207405!2d3.3544849962192784!3d6.583133564257484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9216e51ceb85%3A0x22242cc8658e2b19!2sGRENVILLE%20SCHOOLS!5e0!3m2!1sen!2sng!4v1711141872469!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <!-- contact-map-end -->
 
@@ -113,7 +118,7 @@
                                 </div>
                                 <div class="contact__info__content">
                                     <h4 class="title">address line</h4>
-                                    <span>Bowery St, New York, <br> NY 10013,USA</span>
+                                    <span>{{ $footer->address }}</span>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +129,7 @@
                                 </div>
                                 <div class="contact__info__content">
                                     <h4 class="title">Phone Number</h4>
-                                    <span>+1255 - 568 - 6523</span>
+                                    <span>{{ $footer->phone_no }}</span>
                                     <span>+1255 - 568 - 6523</span>
                                 </div>
                             </div>
@@ -136,8 +141,8 @@
                                 </div>
                                 <div class="contact__info__content">
                                     <h4 class="title">Mail Address</h4>
-                                    <span>email@example.com</span>
-                                    <span>info@yourdomain.com</span>
+                                    <span>{{ $footer->email }}</span>
+                                    <span>info@mrichtec.com</span>
                                 </div>
                             </div>
                         </div>

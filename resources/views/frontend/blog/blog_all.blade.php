@@ -108,7 +108,7 @@
 
                                     </ul>
                                 </div>
-                                <div class="widget">
+                                <!-- <div class="widget">
                                     <h4 class="widget-title">Recent Comment</h4>
                                     <ul class="sidebar__comment">
                                         <li class="sidebar__comment__item">
@@ -116,12 +116,12 @@
                                             <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="widget">
                                     <h4 class="widget-title">Popular Tags</h4>
                                     <ul class="sidebar__tags">
-                                        @foreach($blogpost as $item)
-                                        <li><a href="blog.html">{{ $item->blog_tags }}</a></li>
+                                        @foreach($blogtags as $item)
+                                        <li><a href="">{{ $item->blog_tags }}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>

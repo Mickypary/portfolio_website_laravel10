@@ -110,7 +110,7 @@
 
                                     </ul>
                                 </div>
-                                <div class="widget">
+                                <!-- <div class="widget">
                                     <h4 class="widget-title">Recent Comment</h4>
                                     <ul class="sidebar__comment">
                                         <li class="sidebar__comment__item">
@@ -130,21 +130,13 @@
                                             <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                                 <div class="widget">
                                     <h4 class="widget-title">Popular Tags</h4>
                                     <ul class="sidebar__tags">
-                                        <li><a href="blog.html">Business</a></li>
-                                        <li><a href="blog.html">Design</a></li>
-                                        <li><a href="blog.html">apps</a></li>
-                                        <li><a href="blog.html">landing page</a></li>
-                                        <li><a href="blog.html">data</a></li>
-                                        <li><a href="blog.html">website</a></li>
-                                        <li><a href="blog.html">book</a></li>
-                                        <li><a href="blog.html">Design</a></li>
-                                        <li><a href="blog.html">product design</a></li>
-                                        <li><a href="blog.html">landing page</a></li>
-                                        <li><a href="blog.html">data</a></li>
+                                        @foreach($blog_tags as $item)
+                                        <li><a href="">{{ $item->blog_tags }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </aside>

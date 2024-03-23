@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('blog_tags')->nullable();
             $table->text('blog_description')->nullable();
             $table->string('detail_image')->nullable();
+            $table->string('video_url')->nullable();
             $table->string('wrap_image')->nullable();
             $table->string('wrap_image2')->nullable();
             $table->text('other_text')->nullable();

@@ -147,6 +147,7 @@ Route::get('all/blog', [BlogController::class, 'AllBlogNews'])->name('all.blog.n
 Route::get('contact', [ContactController::class, 'ContactMe'])->name('contact.me');
 Route::post('store/message', [ContactController::class, 'StoreMessage'])->name('store.message');
 Route::post('get/in/touch', [ContactController::class, 'GetInTouch'])->name('get.in.touch');
+Route::get('search', [BlogController::class, 'BlogFilterGet'])->name('blog.search.get');
 
 
 

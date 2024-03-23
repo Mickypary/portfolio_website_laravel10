@@ -100,6 +100,7 @@ class BlogController extends Controller
                 $blog->blog_title = $request->blog_title;
                 $blog->blog_description = $request->blog_description;
                 $blog->blog_tags = $request->blog_tags;            
+                $blog->video_url = $request->video_url;            
                 $blog->created_by = Auth::user()->name;  
                 $blog->user_id = Auth::user()->id;            
                 $blog->save();          
@@ -131,15 +132,19 @@ class BlogController extends Controller
     public function UpdateBlog(Request $request)
     {
         $blog = Blog::findOrFail($request->id);
-        if ($request->file('blog_image')) {
-            @unlink($blog->blog_image);
-            $blog_image = $request->file('blog_image');
-            $filename = hexdec(uniqid()).'.'.$blog_image->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $image = $manager->read($blog_image);
-            $image->resize(430,327)->toPng()->save(base_path('public/upload/blog_images/'.$filename));
-            $blog_image_url = 'upload/blog_images/'.$filename;
-            $blog->blog_image = $blog_image_url;
+        if ($request->file('blog_image') || empty($request->file('blog_image'))) {
+
+            if ($request->file('blog_image')) {
+                @unlink($blog->blog_image);
+                $blog_image = $request->file('blog_image');
+                $filename = hexdec(uniqid()).'.'.$blog_image->getClientOriginalExtension();
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($blog_image);
+                $image->resize(430,327)->toPng()->save(base_path('public/upload/blog_images/'.$filename));
+                $blog_image_url = 'upload/blog_images/'.$filename;
+                $blog->blog_image = $blog_image_url;
+            }
+            
 
             if ($request->file('detail_image')) {
                 @unlink($blog->detail_image);
@@ -200,6 +205,7 @@ class BlogController extends Controller
                 $blog->blog_title = $request->blog_title;
                 $blog->blog_description = $request->blog_description;
                 $blog->blog_tags = $request->blog_tags;  
+                $blog->video_url = $request->video_url; 
                 $blog->created_by = Auth::user()->name;          
                 $blog->save();          
 
@@ -208,6 +214,7 @@ class BlogController extends Controller
                 $blog->blog_title = $request->blog_title;
                 $blog->blog_description = $request->blog_description;
                 $blog->blog_tags = $request->blog_tags; 
+                $blog->video_url = $request->video_url; 
                 $blog->created_by = Auth::user()->name;           
                 $blog->user_id = Auth::user()->id;           
                 $blog->save(); 
@@ -248,18 +255,42 @@ class BlogController extends Controller
     public function BlogCategory($blog_category_id)
     {
         $recentblogs = Blog::latest()->limit(5)->get();
+        $blog_tags = Blog::groupBy('blog_tags')->select('blog_tags')->get();
         $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
         $blogpost = Blog::where('blog_category_id',$blog_category_id)->orderBy('id','desc')->get();
         // dd($categories);
-        return view('frontend.blog.blog_cat_details', compact('blogpost','recentblogs','categories'));
+        return view('frontend.blog.blog_cat_details', compact('blogpost','recentblogs','categories','blog_tags'));
     }
 
     public function AllBlogNews()
     {
         $recentblogs = Blog::latest()->limit(5)->get();
         $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
+        $blogtags = Blog::all();
         $blogpost = Blog::latest()->paginate(3);
-        return view('frontend.blog.blog_all', compact('blogpost','recentblogs','categories'));
+        return view('frontend.blog.blog_all', compact('blogpost','recentblogs','categories','blogtags'));
+    }
+
+    public function BlogFilterGet(Request $request)
+    {
+        $html = "";
+        $blog = $request->search;
+         if ($blog !='') {
+            $where[] = ['blog_tags','like','%'.$blog.'%'];
+            $orWhere[] = ['blog_title','like','%'.$blog.'%'];
+         }
+
+         $data = Blog::where($where)->orWhere($orWhere)->get();
+
+         foreach ($data as $key => $item) {
+            $html .= '<a href="'. route('blog.details', $item->id) . '"><img src="'. asset($item->blog_thumb).'"></a>';
+            $html .= '<h5 class="title"><a href="'. route('blog.details', $item->id) . '">'.$item->blog_title.'</a></h5>';
+            $html .= '<span class="post-date"><i class="fal fa-calendar-alt"></i>'.Carbon::parse($item->created_at)->diffForHumans(). '</span>';
+            
+
+         }  
+
+         return response(@$html);
     }
 
 

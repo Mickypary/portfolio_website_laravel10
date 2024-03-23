@@ -271,7 +271,7 @@ class PortfolioController extends Controller
 
     public function AllPortfolio()
     {
-        $allData = Portfolio::latest()->get();
+        $allData = Portfolio::latest()->paginate(3);
         return view('frontend.portfolio.portfolio_all',compact('allData'));
     }
 

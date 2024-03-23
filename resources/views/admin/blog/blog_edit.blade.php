@@ -139,6 +139,13 @@
                       </div>
                     </div>
 
+                    <div class="row mb-3">
+                      <label for="title" class="col-md-4 col-lg-3 col-form-label">Video URL</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="video_url" type="text" class="form-control" id="video_url" value="{{ $editData->video_url }}">
+                      </div>
+                    </div>
+
 
 
                     <div class="text-center">
