@@ -80,6 +80,7 @@ $route = Route::current()->getName();
                                                 </ul> -->
                                             </li>
                                             <li class="{{ $route == 'contact.me' ? 'active' : ''}}"><a href="{{ route('contact.me') }}">contact me</a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="header__btn d-none d-md-block">
@@ -92,11 +93,14 @@ $route = Route::current()->getName();
                                 <nav class="menu__box">
                                     <div class="close__btn"><i class="fal fa-times"></i></div>
                                     <div class="nav-logo">
-                                        <a href="index.html" class="logo__black"><img src="{{ asset('frontend/') }}{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
-                                        <a href="index.html" class="logo__white"><img src="{{ asset('frontend/') }}{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
+                                        <a href="{{ route('home') }}" class="logo__black"><img src="{{ asset('frontend/') }}{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
+                                        <a href="{{ route('home') }}" class="logo__white"><img src="{{ asset('frontend/') }}{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
                                     </div>
                                     <div class="menu__outer">
                                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                                    </div>
+                                    <div class="header__btn d-md-block">
+                                        <a href="{{ route('login') }}" class="btn" style="background-color: #09A4B5;">Login</a>
                                     </div>
                                     <div class="social-links">
                                         <ul class="clearfix">

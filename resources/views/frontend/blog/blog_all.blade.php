@@ -77,15 +77,17 @@
                         <div class="col-lg-4">
                             <aside class="blog__sidebar">
                                 <div class="widget">
-                                    <form action="#" class="search-form">
-                                        <input type="text" placeholder="Search">
+                                    <form action="" class="search-form">
+                                        <input id="search" type="text" placeholder="Search">
                                         <button type="submit"><i class="fal fa-search"></i></button>
                                     </form>
                                 </div>
+
                                 <div class="widget">
                                     <h4 class="widget-title">Recent Blog</h4>
                                     <ul class="rc__post">
-                                    	@foreach($recentblogs as $item)
+                                        <div class="alldata"> <!-- Js Hiding class -->
+                                        @foreach($recentblogs as $item)
                                         <li class="rc__post__item">
                                             <div class="rc__post__thumb">
                                                 <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_thumb) }}" alt=""></a>
@@ -95,7 +97,22 @@
                                                 <span class="post-date"><i class="fal fa-calendar-alt"></i> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                             </div>
                                         </li>
+
+                                        
+
                                         @endforeach
+                                    </div>
+
+                                    <div class="searchdata">
+                                        <li class="rc__post__item" >
+                                            <div class="rc__post__thumb" id="Content">
+                                                
+                                            </div>
+                                            <div class="rc__post__content" id="Content">
+                                                
+                                            </div>
+                                        </li>
+                                    </div>
 
                                     </ul>
                                 </div>
@@ -139,6 +156,38 @@
 
         </main>
         <!-- main-area-end -->
+
+
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#search').on('keyup', function () {
+                    var value = $(this).val();
+
+                    if (value) {
+                        $('.alldata').hide();
+                        $('.searchdata').show();
+                    }else{
+                        $('.searchdata').hide();
+                        $('.alldata').show();
+                    }
+
+                    $.ajax({
+                        url: "{{ URL::to('search') }}",
+                        type: "get",
+                        data: {'search': value},
+
+                        success: function (data) {
+                            console.log(data);
+                            $('#Content').html(data);
+                            
+                        }
+                    });
+
+                });
+            });
+        </script>
 
 
 
