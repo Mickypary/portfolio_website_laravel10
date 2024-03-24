@@ -38,6 +38,8 @@
                   <!-- Profile Edit Form -->
                   <form method="POST" action="{{ route('store.blog') }}" enctype="multipart/form-data">
                   	@csrf
+
+                    <input type="hidden" name="blog_id" value="{{ uniqid() }}">
                     
 
                     <div class="row mb-3">

@@ -49,15 +49,15 @@
                         	@foreach($blogpost as $item)
                             <div class="standard__blog__post">
                                 <div class="standard__blog__thumb">
-                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->detail_image) }}" alt=""></a>
-                                    <a href="{{ route('blog.details', $item->id) }}" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
+                                    <a href="{{ route('blog.details', $item->blog_id) }}"><img src="{{ asset($item->detail_image) }}" alt=""></a>
+                                    <a href="{{ route('blog.details', $item->blog_id) }}" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
                                 </div>
                                 <div class="standard__blog__content">
                                     <div class="blog__post__avatar">
                                         <div class="thumb"><img style="width: 50px; height: 40px;" src="{{ (!empty($item->user_id) ? asset('upload/admin_images/'.$item['user']->profile_image) : url('upload/no_image.jpg')) }}" alt=""></div>
                                         <span  class="post__by">By : <a href="#">{{ $item->created_by }}</a></span>
                                     </div>
-                                    <h2 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->blog_title }}</a></h2>
+                                    <h2 class="title"><a href="{{ route('blog.details', $item->blog_id) }}">{{ $item->blog_title }}</a></h2>
                                     <p>{!! Str::limit($item->blog_description, 200) !!}</p>
                                     <ul class="blog__post__meta">
                                         <li><i class="fal fa-calendar-alt"></i> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }} </li>
@@ -90,10 +90,10 @@
                                         @foreach($recentblogs as $item)
                                         <li class="rc__post__item">
                                             <div class="rc__post__thumb">
-                                                <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_thumb) }}" alt=""></a>
+                                                <a href="{{ route('blog.details', $item->blog_id) }}"><img src="{{ asset($item->blog_thumb) }}" alt=""></a>
                                             </div>
                                             <div class="rc__post__content">
-                                                <h5 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->blog_title }}</a></h5>
+                                                <h5 class="title"><a href="{{ route('blog.details', $item->blog_id) }}">{{ $item->blog_title }}</a></h5>
                                                 <span class="post-date"><i class="fal fa-calendar-alt"></i> {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                             </div>
                                         </li>

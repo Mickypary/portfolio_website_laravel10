@@ -141,7 +141,7 @@ Route::get('service/all', [HomeController::class, 'ServiceDetailsMenu'])->name('
 Route::get('portfolio/details/{id}', [PortfolioController::class, 'PortfolioDetails'])->name('portfolio.details');
 Route::get('portfolio/all', [PortfolioController::class, 'AllPortfolio'])->name('portfolio.menu');
 Route::get('download/resume/{file_name}', [HomeController::class, 'DownloadResume'])->name('download.resume');
-Route::get('blog/details/{id}', [BlogController::class, 'BlogDetails'])->name('blog.details');
+Route::get('blog/details/{blog_id}', [BlogController::class, 'BlogDetails'])->name('blog.details');
 Route::get('category/blog/{blog_category_id}', [BlogController::class, 'BlogCategory'])->name('blog.category');
 Route::get('all/blog', [BlogController::class, 'AllBlogNews'])->name('all.blog.news');
 Route::get('contact', [ContactController::class, 'ContactMe'])->name('contact.me');
@@ -191,7 +191,7 @@ Route::middleware(['auth','prevent-back-history'])->group(function () {
             Route::get('all','AllBlog')->name('all.blog');
             Route::get('add','AddBlog')->name('add.blog');
             Route::post('store','StoreBlog')->name('store.blog');
-            Route::get('edit/{id}','EditBlog')->name('edit.blog');
+            Route::get('edit/{blog_id}','EditBlog')->name('edit.blog');
             Route::post('update','UpdateBlog')->name('update.blog');
             Route::get('delete/{id}','DeleteBlog')->name('delete.blog');
         });

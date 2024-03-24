@@ -51,8 +51,8 @@
                     <td><img src="{{ asset($item->blog_image) }}" style="width: 60px; height: 50px;"></td>
                     <td><img src="{{ asset($item->detail_image) }}" style="width: 60px; height: 50px;"></td>
                     <td>
-                      <a href="{{ route('edit.blog', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="bx bxs-edit"></i></a> |
-                      <a href="{{ route('delete.blog', $item->id) }}" id="delete" class="btn btn-danger" title="Delete Data"><i class="bx bxs-trash"></i></a>
+                      <a href="{{ route('edit.blog', $item->blog_id) }}" class="btn btn-info" title="Edit Data"><i class="bx bxs-edit"></i></a> |
+                      <a href="{{ route('delete.blog', $item->blog_id) }}" id="delete" class="btn btn-danger" title="Delete Data"><i class="bx bxs-trash"></i></a>
                     </td>
                   </tr>
                   @endforeach

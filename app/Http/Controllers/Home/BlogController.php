@@ -22,6 +22,8 @@ class BlogController extends Controller
     public function AllBlog()
     {
         $blogs = Blog::latest()->get();
+        // $blogs = DB::table('blogs')->get();
+        // dd($blogs);
         return view('admin.blog.blog_all', compact('blogs'));
     }
 
@@ -97,6 +99,7 @@ class BlogController extends Controller
             }
 
                 $blog->blog_category_id = $request->blog_category_id;
+                $blog->blog_id = $request->blog_id;
                 $blog->blog_title = $request->blog_title;
                 $blog->blog_description = $request->blog_description;
                 $blog->blog_tags = $request->blog_tags;            
@@ -122,10 +125,10 @@ class BlogController extends Controller
         return redirect()->route('all.blog')->with($notification);
     }
 
-    public function EditBlog($id)
+    public function EditBlog($blog_id)
     {
         $categories = BlogCategory::orderBy('blog_category','asc')->get();
-        $editData = Blog::findOrFail($id);
+        $editData = Blog::where('blog_id',$blog_id)->get();
         return view('admin.blog.blog_edit', compact('editData','categories'));
     }
 
@@ -240,14 +243,15 @@ class BlogController extends Controller
             return redirect()->route('all.blog')->with($notification);
     }
 
-    public function BlogDetails($id)
+    public function BlogDetails($blog_id)
     {
         $recentblogs = Blog::latest()->limit(5)->get();
         $categories = Blog::groupBy('blog_category_id')->selectRaw('blog_category_id, count(blog_category_id) as cat_count')->get();
         // $categories = Blog::select(DB::raw('count("blog_category_id") as cat_count, blog_category_id'))
         //       ->groupBy('blog_category_id')
         //       ->get();
-        $blogs = Blog::findOrFail($id);
+        $blogs = Blog::where('blog_id',$blog_id)->first();
+        // dd($blogs[0]->blog_title);
         $blog_tags = Blog::all();
         return view('frontend.blog.blog_details', compact('blogs','recentblogs','categories','blog_tags'));
     }
@@ -268,6 +272,7 @@ class BlogController extends Controller
         $categories = Blog::groupBy('blog_category_id','created_by','user_id')->selectRaw('blog_category_id,created_by,user_id, count(blog_category_id) as cat_count')->get();
         $blogtags = Blog::all();
         $blogpost = Blog::latest()->paginate(3);
+        // dd($blogpost[0]->blog_id);
         return view('frontend.blog.blog_all', compact('blogpost','recentblogs','categories','blogtags'));
     }
 
